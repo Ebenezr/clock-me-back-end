@@ -1,9 +1,73 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
+  @user
+  @newemployee
   # Add your routes here
-  get "/" do
-    { message: "Good luck with your project!" }.to_json
+  post '/login/user' do 
+   
+    user = Employee.find_by(username: params[:username], password: params[:password]) || Admin.find_by(username: params[:username], password: params[:password])
+    if !user.nil?
+      user.to_json
+    else 
+      responce ={
+        responce:"user doesnt exist" 
+      }.to_json
+    end  
+  end   
+
+  #create new employee on database
+  post '/employees/register' do
+  
+    existing_user = Employee.find_by(email: params[:email])
+
+    if existing_user.nil? 
+      @newemployee = Employee.new(name: params["name"], email: params["email"], password: params["password"], username: params["username"], gender: params["gender"], title: params["title"], usertype: params["usertype"],avatar: params["avatar"])
+      @newemployee.save
+    else
+      return "user exists"
+    end  
+
+    @newemployee.to_json
+    #(only: [:name, :usertype])
+
+  end
+
+
+    #update a user new employee on database
+    patch '/employees/update/:id' do
+  
+      existinguser = Employee.find(params[:id])
+    
+      existinguser.update(name: params[:name], email: params[:email], password: params[:password], username: params[:username], gender: params[:gender], title: params[:title], usertype: params[:usertype],avatar: params[:avatar])
+          
+      existinguser.to_json
+  
+    end
+
+
+    #change user password
+    patch '/employees/updatepassword/:email' do
+
+      existinguser = Employee.find_by(params[:email])
+    
+      existinguser.update(password: params[:password])
+          
+      existinguser.to_json
+  
+    end
+
+  #fetch all employees
+  get '/employees/fetch' do
+    Employee.all.to_json
+  end
+
+  #delete a user
+  delete '/delete/:id' do
+    employee = Employee.find(params[:id])
+
+    employee.destroy
+    employee.to_json
   end
 
 end
