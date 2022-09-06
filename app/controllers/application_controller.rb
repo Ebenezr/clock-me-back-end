@@ -72,9 +72,14 @@ class ApplicationController < Sinatra::Base
   #delete a user
   delete 'employee/delete/:id' do
     employee = Employee.find(params[:id])
-
-    employee.destroy
-    employee.to_json
+    if !employee.nil? 
+      employee.destroy
+      return employee.to_json
+    else
+      responce ={
+        responce:"User doesnt exist" 
+      }.to_json
+    end  
   end
 
 end
