@@ -70,7 +70,7 @@ class ApplicationController < Sinatra::Base
     end
 
   #delete a user
-  delete '/delete/:id' do
+  delete 'employee/delete/:id' do
     employee = Employee.find(params[:id])
 
     employee.destroy
