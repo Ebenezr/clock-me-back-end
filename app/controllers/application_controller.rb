@@ -2,7 +2,6 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   @user
-  @newemployee
   # Add your routes here
   post '/login/user' do 
    
@@ -22,10 +21,13 @@ class ApplicationController < Sinatra::Base
     existing_user = Employee.find_by(email: params[:email])
 
     if existing_user.nil? 
-      @newemployee = Employee.new(name: params["name"], email: params["email"], password: params["password"], username: params["username"], gender: params["gender"], title: params["title"], usertype: params["usertype"],avatar: params["avatar"])
-      @newemployee.save
+      newemployee = Employee.create(name: params["name"], email: params["email"], password: params["password"], username: params["username"], gender: params["gender"], title: params["title"], usertype: params["usertype"],avatar: params["avatar"])
+      return newemployee.to_json
     else
-      return "user exists"
+      responce ={
+        responce:"Employee alredy exist" 
+      }
+      return responce.to_json
     end  
 
     @newemployee.to_json
@@ -61,6 +63,11 @@ class ApplicationController < Sinatra::Base
   get '/employees/fetch' do
     Employee.all.to_json
   end
+
+    #fetch all departments
+    get '/departments/count' do
+      Department.count.to_json
+    end
 
   #delete a user
   delete '/delete/:id' do
