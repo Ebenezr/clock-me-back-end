@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_06_190609) do
+ActiveRecord::Schema.define(version: 2022_09_07_150231) do
 
   create_table "admins", force: :cascade do |t|
     t.string "name"
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 2022_09_06_190609) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "department_id"
     t.string "avatar"
+  end
+
+  create_table "timerecords", force: :cascade do |t|
+    t.integer "employee_id"
+    t.string "monday"
+    t.string "tuesday"
+    t.string "wednesday"
+    t.string "thursday"
+    t.string "friday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "timestamps", force: :cascade do |t|
