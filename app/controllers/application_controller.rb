@@ -82,4 +82,17 @@ class ApplicationController < Sinatra::Base
     end  
   end
 
+
+  get '/employee/timestamps/:id' do
+    employee = Employee.find(params[:id])
+    if !employee.nil? 
+    #  timestamp = employee.
+      return employee.timestamp.to_json(only: [:monday, :tuesday, :wednesday, :thursday, :friday])
+    else
+      responce ={
+        responce:"User doesnt exist" 
+      }.to_json
+    end  
+  end
+
 end
