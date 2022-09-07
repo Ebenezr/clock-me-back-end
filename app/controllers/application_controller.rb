@@ -21,9 +21,10 @@ class ApplicationController < Sinatra::Base
     existing_user = Employee.find_by(email: params[:email])
 
     if existing_user.nil? 
-      newemployee = Employee.create(name: params["name"], email: params["email"], password: params["password"], username: params["username"], gender: params["gender"], title: params["title"], usertype: params["usertype"],avatar: params["avatar"], department_id: params["department_id"])
+      new_employee = Employee.create(name: params["name"], email: params["email"], password: params["password"], username: params["username"], gender: params["gender"], title: params["title"], usertype: params["usertype"],avatar: params["avatar"], department_id: params["department_id"])
       #create a new timestamb instance for new user
-      Timestamp.create(employee_id: newemployee.id,monday: 0,tuesday: 0,wednesday: 0,thursday: 0,friday: 0)
+      Timestamp.create(employee_id: new_employee.id,monday: 0,tuesday: 0,wednesday: 0,thursday: 0,friday: 0)
+      Timerecord.create(employee_id: new_employee.id, monday: '', tuesday: '', wednesday: '', thursday: '', friday: '')
       
       return newemployee.to_json
     else
@@ -116,8 +117,55 @@ class ApplicationController < Sinatra::Base
        }.to_json
     end  
   end
-   
 
+
+  get '/employee/timerecord/:id' do
+    employee = Employee.find(params[:id])
+    if !employee.nil? 
+    #  timestamp = employee.
+      return employee.timerecord.to_json(only: [:monday, :tuesday, :wednesday, :thursday, :friday])
+    else
+      responce ={
+        responce:"User doesnt exist" 
+      }.to_json
+    end  
+  end
+
+  put '/employee/timerecord/update/:id' do
+    employee = Employee.find(params[:id])
+    if !employee.nil? 
+        hash = params.reject { |k, v| v.blank? }
+        employee.timerecord.update(hash)
+      employee.timerecord.to_json
+    else
+   responce ={
+     responce:"User doesnt exist" 
+       }.to_json
+    end  
+  end
+
+  get '/employee/fetch/totalhours/:id' do
+    employee = Employee.find(params[:id]);
+    hours = employee.timestamp.monday + employee.timestamp.tuesday + employee.timestamp.wednesday + employee.timestamp.thursday + employee.timestamp.friday
+    hours.to_json
+  
+  end
+   
+  get '/employee/fetch/avaragetime/:id' do
+    employee = Employee.find(params[:id]);
+    hours = employee.timestamp.monday + employee.timestamp.tuesday + employee.timestamp.wednesday + employee.timestamp.thursday + employee.timestamp.friday
+    (hours/5).to_json
+  end
+
+  get '/employee/fetch/salary/:id' do
+    rate=850
+    tax=85
+    employee = Employee.find(params[:id]);
+    hours = employee.timestamp.monday + employee.timestamp.tuesday + employee.timestamp.wednesday + employee.timestamp.thursday + employee.timestamp.friday
+    hours.to_i
+    (hours*855).to_json
+  
+  end
 
 
 
