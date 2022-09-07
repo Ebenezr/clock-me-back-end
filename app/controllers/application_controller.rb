@@ -21,7 +21,10 @@ class ApplicationController < Sinatra::Base
     existing_user = Employee.find_by(email: params[:email])
 
     if existing_user.nil? 
-      newemployee = Employee.create(name: params["name"], email: params["email"], password: params["password"], username: params["username"], gender: params["gender"], title: params["title"], usertype: params["usertype"],avatar: params["avatar"])
+      newemployee = Employee.create(name: params["name"], email: params["email"], password: params["password"], username: params["username"], gender: params["gender"], title: params["title"], usertype: params["usertype"],avatar: params["avatar"], department_id: params["department_id"])
+      #create a new timestamb instance for new user
+      Timestamp.create(employee_id: newemployee.id,monday: 0,tuesday: 0,wednesday: 0,thursday: 0,friday: 0)
+      
       return newemployee.to_json
     else
       responce ={
@@ -39,11 +42,17 @@ class ApplicationController < Sinatra::Base
     #update a user new employee on database
     patch '/employees/update/:id' do
   
-      existinguser = Employee.find(params[:id])
-    
-      existinguser.update(name: params[:name], email: params[:email], password: params[:password], username: params[:username], gender: params[:gender], title: params[:title], usertype: params[:usertype],avatar: params[:avatar])
-          
-      existinguser.to_json
+      existing_user = Employee.find(params[:id])
+      if existing_user.nil?
+        responce ={
+          responce:"Employee doesn't exist" 
+        }
+        return responce.responce.to_json 
+      else
+        hash = params.reject { |k, v| v.blank? }
+        existing_user.update(hash)
+        existing_user.to_json
+      end  
   
     end
 
@@ -94,5 +103,23 @@ class ApplicationController < Sinatra::Base
       }.to_json
     end  
   end
+
+  put '/employee/timestamps/update/:id' do
+    employee = Employee.find(params[:id])
+    if !employee.nil? 
+        hash = params.reject { |k, v| v.blank? }
+        employee.timestamp.update(hash)
+      employee.timestamp.to_json
+    else
+   responce ={
+     responce:"User doesnt exist" 
+       }.to_json
+    end  
+  end
+   
+
+
+
+
 
 end
