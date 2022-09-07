@@ -1,7 +1,7 @@
 # # This will delete any existing rows from the Movie and Actor tables
 # # so you can run the seed file multiple times without having duplicate entries in your database
 # puts "Deleting company/depatments/employees/admin/timestamps data..."
-Employee.destroy_all
+#Employee.destroy_all
 # # Department.destroy_all
 # # Company.destroy_all
 
@@ -19,12 +19,12 @@ Employee.destroy_all
 # technical_support = Department.create(name: "Technical Support",company_id:1)
 
 
-puts "Creating Employees..."
-ebenezar = Employee.create(name: "Ebenezar Bukosia", email: "ebenezar@mail.com", password: "show!", username:"ebenezar", gender: "male", title:"CEO",usertype: false,department_id: 4)
-elvis =  Employee.create(name: "Elvis Kimani", email: "elvis@mail.com", password: "Show4@", username:"elviskim", gender: "male", title:"Injiniaa",usertype: false,department_id: 2)
-daizie = Employee.create(name: "Daicy Chep", email: "daicy@mail.com", password: "Show!5", username:"daizie", gender: "female", title:"developer",usertype: false, department_id: 4)
-employee1 = Employee.create(name: "nancy", email: "employee1@gmail.com", password: "Show!1", username:"employee2", gender: "female", title:"developer",usertype: false, department_id: 1)
-employee2 = Employee.create(name: "pascal o", email: "employee2@gmail.com", password: "Show!2", username:"employee", gender: "male", title:"Human Resource",usertype: false, department_id: 2)
+# puts "Creating Employees..."
+# ebenezar = Employee.create(name: "Ebenezar Bukosia", email: "ebenezar@mail.com", password: "show!", username:"ebenezar", gender: "male", title:"CEO",usertype: false,department_id: 4)
+# elvis =  Employee.create(name: "Elvis Kimani", email: "elvis@mail.com", password: "Show4@", username:"elviskim", gender: "male", title:"Injiniaa",usertype: false,department_id: 2)
+# daizie = Employee.create(name: "Daicy Chep", email: "daicy@mail.com", password: "Show!5", username:"daizie", gender: "female", title:"developer",usertype: false, department_id: 4)
+# employee1 = Employee.create(name: "nancy", email: "employee1@gmail.com", password: "Show!1", username:"employee2", gender: "female", title:"developer",usertype: false, department_id: 1)
+# employee2 = Employee.create(name: "pascal o", email: "employee2@gmail.com", password: "Show!2", username:"employee", gender: "male", title:"Human Resource",usertype: false, department_id: 2)
 
 
 # puts "Creating Admin..."
@@ -38,5 +38,13 @@ employee2 = Employee.create(name: "pascal o", email: "employee2@gmail.com", pass
 # design=Department_manager.create(employee_id: 4, department_id: 4)
 # technical_support=Department_manager.create(employee_id: 5, department_id: 5)
 
+puts 'creating time stamps'
 
-# puts "Seeding done!"
+one =Timestamp.create(employee_id: 1, monday: 10, tuesday: 11, wednesday: 7, thursday: 5, friday: 5)
+two =Timestamp.create(employee_id: 2, monday: 10, tuesday: 11, wednesday: 7, thursday: 5, friday: 1)
+four =Timestamp.create(employee_id: 4, monday: 8, tuesday: 0, wednesday: 7, thursday: 12, friday: 7)
+three= Timestamp.create(employee_id: 3, monday: 8, tuesday: 10, wednesday: 12, thursday: 7, friday: 4)
+
+
+
+ puts "Seeding done!"
