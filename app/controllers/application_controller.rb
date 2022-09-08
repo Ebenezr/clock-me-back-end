@@ -15,18 +15,34 @@ class ApplicationController < Sinatra::Base
     end  
   end   
 
+  #change user password
+  patch '/employees/updatepassword/:email' do
+
+      existing_user = Employee.find_by(params[:email])
+      if !existing_user.nil?
+        existinguser.update(password: params[:password])
+        return existinguser.to_json
+      else 
+        responce ={
+          responce:"user doesnt exist" 
+        }
+        return responce.to_json
+      end  
+    
+  end
+
   #create new employee on database
   post '/employees/register' do
   
     existing_user = Employee.find_by(email: params[:email])
 
     if existing_user.nil? 
-      new_employee = Employee.create(name: params["name"], email: params["email"], password: params["password"], username: params["username"], gender: params["gender"], title: params["title"], usertype: params["usertype"],avatar: params["avatar"], department_id: params["department_id"])
+      hash = params.reject { |k, v| v.blank? }
+      new_employee = Employee.create(hash)
       #create a new timestamb instance for new user
       Timestamp.create(employee_id: new_employee.id,monday: 0,tuesday: 0,wednesday: 0,thursday: 0,friday: 0)
       Timerecord.create(employee_id: new_employee.id, monday: '', tuesday: '', wednesday: '', thursday: '', friday: '')
-      
-      return newemployee.to_json
+      return new_employee.to_json
     else
       responce ={
         responce:"Employee alredy exist" 
@@ -58,16 +74,7 @@ class ApplicationController < Sinatra::Base
     end
 
 
-    #change user password
-    patch '/employees/updatepassword/:email' do
 
-      existinguser = Employee.find_by(params[:email])
-    
-      existinguser.update(password: params[:password])
-          
-      existinguser.to_json
-  
-    end
 
   #fetch all employees
   get '/employees/fetch' do
