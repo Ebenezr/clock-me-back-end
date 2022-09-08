@@ -1,124 +1,179 @@
-# Phase 3 Project Guidelines
+# CLOCK-ME
 
-## Learning Goals
+---
 
-- Build a web basic API with Sinatra and Active Record to support a React
-  frontend
+### Author : BUKOSIA EBENEZAR
 
-## Introduction
+---
 
-Congrats on getting through all the material for Phase 3! Now's the time to put
-it all together and build something from scratch to reinforce what you know and
-expand your horizons.
+## Project Description
 
-The focus of this project is **building a Sinatra API backend** that uses
-**Active Record** to access and persist data in a database, which will be used
-by a separate **React frontend** that interacts with the database via the API.
+Clock-me: is is a web application used to keep track of employees and thier clock-in and clock out time and also calculates their salary based on total clocked time.
 
-## Requirements
+---
 
-For this project, you must:
+## SCREENSHOTS
 
-- Use Active Record to interact with a database.
-- Have at least two models with a one-to-many relationship.
-- At a minimum, set up the following API routes in Sinatra:
-  - create and read actions for both models
-  - full CRUD capability for one of the models
-- Build a separate React frontend application that interacts with the API to
-  perform CRUD actions.
-- Use good OO design patterns. You should have separate classes for each of your
-  models, and create instance and class methods as necessary.
+## Table of content
 
-For example, build a todo list application with a React frontend interface and a
-Sinatra backend API, where a user can:
+- [Technologies](#description)
+- [Description](#description)
+- [Features](#features)
+- [Setup-process](#setup_process)
+- [Project-usage](#project-usage)
+- [Licence](#licence)
+- [Copyright](#copyright)
 
-- **Create** a new todo
-- **Read** a list of all todos
-- **Update** an individual todo
-- **Delete** a todo
+---
 
-A `Todo` can be tagged with a `Category`, so that each todo _belongs to_ a
-category and each category _has many_ todos.
+## Technologies
 
-## Getting Started
+languages used are:
+Front-end
 
-### Backend Setup
+1. React(Typescript)
+2. Sass
+   Back-end
+3. ruby
 
-This repository has all the starter code needed to get a Sinatra backend up and
-running. [**Fork and clone**][fork link] this repository to get started. Then, run
-`bundle install` to install the gems.
+---
 
-**Important**: Be sure you fork a copy of the repo into your GitHub account
-before cloning it. You can do this by using the link above or by clicking the
-"Octocat" button at the top of this page, then clicking "Fork" in the upper
-right corner of the repo page.
+### Features
 
-[fork link]: https://github.com/learn-co-curriculum/phase-3-sinatra-react-project/fork
+- As a employee you can be able to:
 
-The `app/controllers/application_controller.rb` file has an example GET route
-handler. Replace this route with routes for your project.
+1. Login with his/her account.
+2. Reset his/her password
+3. Record and track his/her timestamp.
+4. view his/her weekly performances tatistics
+5. View her salary
 
-You can start your server with:
+- AS an admin you can be able to:
 
-```console
-$ bundle exec rake server
-```
+4. Add new employees.
+5. Update employees details.
+6. Delete an Employee
 
-This will run your server on port
-[http://localhost:9292](http://localhost:9292).
+---
 
-### Frontend Setup
+### description
 
-Your backend and your frontend should be in **two different repositories**.
+This web application helps to solve the problem of tracing employees working time. This can be very essential espesialy jobs that pays thier employees on hourly basis.
+the application is also beneficial to a any company since it enables them track thier working times of thier employees and know how to optimize make thiem efficient.
+the application solve this such as recoding each day's clock-in and clock-out timestamp and record it in the database as string array. the application then uses the timestamps to calculate how many hours the employee has been working and compute the employees salary.
 
-Create a new repository in a **separate folder** with a React app for your
-frontend. To do this, `cd` out of the backend project directory, and use
-[create-react-app][] to generate the necessary code for your React frontend:
+---
 
-```console
-$ npx create-react-app my-app-frontend
-```
+### challenges
 
-After creating the project locally, you should also
-[create a repository on GitHub][create repo] to host your repo and help
-collaborate, if you're working with a partner.
+- Manipulating timestamps.
+- Implementing theme change using sass.
 
-### Fetch Example
+---
 
-Your React app should make fetch requests to your Sinatra backend! Here's an
-example:
+## How to set up and run the project
 
-```js
-fetch("http://localhost:9292/test")
-  .then((r) => r.json())
-  .then((data) => console.log(data));
-```
+### Requirements
 
-## Project Tips
+- [npm](https://www.npmjs.com/)
+- Text editor eg [Visual Studio Code](https://code.visualstudio.com/download)
 
-- This project is intended to focus more on the backend than the frontend, so
-  try and keep the React side of things relatively simple. Focus on working with
-  Active Record and performing CRUD actions. What are some interesting queries you can write? What kinds of questions can you ask of your data?
-- Once you have a project idea, come up with a domain model and decide what
-  relationships exist between the models in your application. Use a tool like
-  [dbdiagram.io][] to help visualize your models.
-- Decide on your API endpoints. What data should they return? What kind of CRUD
-  action should they perform? What data do they need from the client?
-- Use [Postman][postman download] to test your endpoints.
-- Use `binding.pry` to debug your requests on the server. It's very helpful to use a
-  `binding.pry` in your controller within a route to see what `params` are being
-  sent.
-- Use the [Network Tab in the Dev Tools][network tab] in the frontend to debug
-  your requests.
+---
 
-## Resources
+### Dependencies
 
-- [create-react-app][]
-- [dbdiagram.io][]
-- [Postman][postman download]
+- npm
+- ruby
 
-[create-react-app]: https://create-react-app.dev/docs/getting-started
-[create repo]: https://docs.github.com/en/get-started/quickstart/create-a-repo
-[dbdiagram.io]: https://dbdiagram.io/
-[postman download]: https://www.postman.com/downloads/
-[network tab]: https://developer.chrome.com/docs/devtools/network/
+---
+
+### setup
+
+#### Back end
+
+clone the repo using the command
+
+- `git clone https://github.com/Ebenezr/clock-me-back-end.git`
+
+change directory using command
+
+- `cd clock-me-backend-end`
+
+open project in vscode texteditor
+
+- `code .`
+
+install dependancies gems
+
+- `bundle exec install`
+
+run server
+
+- `bundle exec rake server`
+
+---
+
+#### Front end
+
+clone the repo using the command
+
+- `git clone https://github.com/Ebenezr/clock-me-front-end.git`
+
+change directory using command
+
+- `cd clock-me-front-end`
+
+open project in vscode texteditor
+
+- `code .`
+
+install dependancies packages
+
+- `run npm install`
+
+run front end
+
+- `npm start`
+
+---
+
+#### live link
+
+//TODO
+
+<!-- - run the following live link in your browser  -->
+
+## How to use the project
+
+---
+
+### Contributing to project
+
+- Fork the repo
+
+* Create a new branch in your terminal (git checkout -b improve-feature)
+* Install the prerequisites
+* Make appropriate changes in file(s)
+* Run the server to see the changes
+* Add the changes and commit them (git commit -am "Improve App")
+* Push to the branch (git push origin improve-app)
+* Create a Pull request
+
+---
+
+## Copyright
+
+Copyright(c)[2022][bukosia ebenezar]
+
+---
+
+## Contact Information
+
+- Email : ebenezarbukosia@gmail.om
+
+---
+
+## [License](LICENSE)
+
+MIT License
+Copyright (c) 2022 Bukosia Ebenezar
