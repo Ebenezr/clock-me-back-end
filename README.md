@@ -32,7 +32,7 @@ Clock-me: is is a web application used to keep track of employees and thier cloc
 
 ### Admin Panel
 
-#### ![image](./assets/dashboard.png)
+#### ![image](./assets/admin.png)
 
 ### Timecard Panel
 
