@@ -14,6 +14,34 @@ Clock-me: is is a web application used to keep track of employees and thier cloc
 
 ## SCREENSHOTS
 
+### Mobile View
+
+#### ![image](./assets/mobileui.png)
+
+### Login
+
+#### ![image](./assets/login.png)
+
+### Password Recovery
+
+#### ![image](./assets/passwordrecovery.png)
+
+### Dashboard Panel
+
+#### ![image](./assets/dashboard.png)
+
+### Admin Panel
+
+#### ![image](./assets/dashboard.png)
+
+### Timecard Panel
+
+#### ![image](./assets/timecard.png)
+
+### Analytics Panel
+
+#### ![image](./assets/analyticspage.png)
+
 ## Table of content
 
 - [Technologies](#description)
@@ -29,12 +57,17 @@ Clock-me: is is a web application used to keep track of employees and thier cloc
 ## Technologies
 
 languages used are:
-Front-end
+
+- Front-end
 
 1. React(Typescript)
 2. Sass
-   Back-end
-3. ruby
+
+---
+
+- Back-end
+
+1. ruby(Active Record)
 
 ---
 
