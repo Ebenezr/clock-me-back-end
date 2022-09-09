@@ -15,21 +15,7 @@ class ApplicationController < Sinatra::Base
     end  
   end   
 
-  #change user password
-  patch '/employees/updatepassword/:email' do
 
-      existing_user = Employee.find_by(params[:email])
-      if !existing_user.nil?
-        existinguser.update(password: params[:password])
-        return existinguser.to_json
-      else 
-        responce ={
-          responce:"user doesnt exist" 
-        }
-        return responce.to_json
-      end  
-    
-  end
 
   #create new employee on database
   post '/employees/register' do
@@ -73,8 +59,23 @@ class ApplicationController < Sinatra::Base
   
     end
 
+  #change user password
+  get '/employee/updatepassword/:email' do
+ 
 
-
+    user = Employee.find_by(params[:email])
+    if user.nil?
+      responce ={
+        responce:"user doesnt exist" 
+      }
+      responce.to_json
+    else 
+      user.new(password: params[:password])
+    #  user.to_json
+    
+    end  
+  
+end
 
   #fetch all employees
   get '/employees/fetch' do
