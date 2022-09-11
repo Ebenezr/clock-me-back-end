@@ -1,3 +1,3 @@
-class Timestamp < ActiveRecord::Base
+class Timestamp 
     belongs_to :employee, :class_name => 'Employee', :foreign_key => 'employee_id'
  end

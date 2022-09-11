@@ -1,4 +1,4 @@
-class ApplicationController < Sinatra::Base
+class ApplicationController
   set :default_content_type, 'application/json'
   
   @users
