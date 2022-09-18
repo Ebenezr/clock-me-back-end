@@ -8,8 +8,8 @@ class ApplicationController < Sinatra::Base
   # user login authentification
   post '/login/user' do 
    
-    user = Employee.find_by(username: params[:username], password: params[:password]) || Admin.find_by(username: params[:username], password: params[:password])
-    if !user.nil?
+    @user = Employee.find_by(username: params[:username]) || Admin.find_by(username: params[:username])
+    if @user.password == params[:password]
       user.to_json
     else 
       responce ={
