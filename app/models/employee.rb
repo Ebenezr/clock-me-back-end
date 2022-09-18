@@ -1,3 +1,4 @@
+require 'bcrypt'
 class Employee < ActiveRecord::Base
    belongs_to :department
    has_one :timestamp
@@ -5,12 +6,25 @@ class Employee < ActiveRecord::Base
 
    include BCrypt
    def password 
-       @password ||= Password.new(password.hash)
+       @password ||= Password.new(password_hash)
    end
 
    def password=(new_password)
        @password = Password.create(new_password)
        self.password_hash = @password
    end
+
+#    def create
    
+#   end
+    # def login
+    #     @user = self.find_by(username: params[:username])
+    #     if @user.password == params[:password]
+    #         @user.to_json
+    #     else 
+    #         responce ={
+    #             responce:"user doesnt exist" 
+    #         }.to_json
+    #     end  
+    # end
 end

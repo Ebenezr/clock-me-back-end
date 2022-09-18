@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 # A DSL for quickly creating web applications
 # https://github.com/sinatra/sinatra
-#gem "sinatra", "~> 2.1",require: false
+gem "sinatra", "~> 2.1",require: false
 
 # A fast and simple web server
 # https://github.com/macournoyer/thin
@@ -29,7 +29,7 @@ gem "sinatra-activerecord", "~> 2.0"
 gem "rake", "~> 13.0"
 
 # Provides functionality to interact with a SQLite3 database
-#gem "sqlite3", "~> 1.4"
+gem "sqlite3", "~> 1.4"
 
 # Require all files in a folder
 gem "require_all", "~> 3.0"
@@ -44,6 +44,7 @@ group :development do
   gem "rerun"
 end
 
+gem 'bcrypt', '~> 3.1.7'
 #gem  "bycrypt"
 
 # These gems will only be used when we are running tests

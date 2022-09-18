@@ -7,18 +7,15 @@ class ApplicationController < Sinatra::Base
 
   # user login authentification
   post '/login/user' do 
-   
-    @user = Employee.find_by(username: params[:username]) || Admin.find_by(username: params[:username])
+    @user = Employee.find_by(username: params[:username])
     if @user.password == params[:password]
-      user.to_json
+        @user.to_json
     else 
-      responce ={
-        responce:"user doesnt exist" 
-      }.to_json
+        responce ={
+          responce:"user doesnt exist" 
+        }.to_json
     end  
   end   
-
-
 
   #create new employee on database
   post '/employees/register' do
@@ -27,11 +24,17 @@ class ApplicationController < Sinatra::Base
 
     if existing_user.nil? 
       hash = params.reject { |k, v| v.blank? }
-      new_employee = Employee.create(hash)
-      #create a new timestamb instance for new user
-      Timestamp.create(employee_id: new_employee.id,monday: 0,tuesday: 0,wednesday: 0,thursday: 0,friday: 0)
-      Timerecord.create(employee_id: new_employee.id, monday: '', tuesday: '', wednesday: '', thursday: '', friday: '')
-      return new_employee.to_json
+      @user = Employee.new(hash)
+      @user.password = params[:password]
+      @user.save
+    
+      # @user = Employee.new(hash)
+      # @user.password_hash = params[:password]
+      # @user.save
+      # #create a new timestamb instance for new user
+      Timestamp.create(employee_id: @user.id,monday: 0,tuesday: 0,wednesday: 0,thursday: 0,friday: 0)
+      Timerecord.create(employee_id: @user.id, monday: '', tuesday: '', wednesday: '', thursday: '', friday: '')
+      return @user.to_json
     else
       responce ={
         responce:"Employee alredy exist" 
@@ -39,8 +42,8 @@ class ApplicationController < Sinatra::Base
       return responce.to_json
     end  
 
-    @newemployee.to_json
-    #(only: [:name, :usertype])
+    # @newemployee.to_json
+    # #(only: [:name, :usertype])
 
   end
 

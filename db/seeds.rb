@@ -23,15 +23,15 @@ technical_support = Department.create(name: "Technical Support",company_id:1)
 
 
 puts "Creating Employees..."
-ebenezar = Employee.create(name: "Ebenezar Bukosia", email: "ebenezar@mail.com", password: "show!", username:"ebenezar", gender: "male", title:"CEO",usertype: false,department_id: 4, avatar: "https://picsum.photos/315")
-elvis =  Employee.create(name: "Elvis Kimani", email: "elvis@mail.com", password: "Show4@", username:"elviskim", gender: "male", title:"Injiniaa",usertype: false,department_id: 2,avatar: "https://picsum.photos/316")
-daizie = Employee.create(name: "Daicy Chep", email: "daicy@mail.com", password: "Show!5", username:"daizie", gender: "female", title:"developer",usertype: false, department_id: 4, avatar: "https://picsum.photos/317")
-employee1 = Employee.create(name: "nancy", email: "employee1@gmail.com", password: "Show!1", username:"employee2", gender: "female", title:"developer",usertype: false, department_id: 1,avatar: "https://picsum.photos/318")
-employee2 = Employee.create(name: "pascal o", email: "employee2@gmail.com", password: "Show!2", username:"employee", gender: "male", title:"Human Resource",usertype: false, department_id: 2,avatar: "https://picsum.photos/319")
+ebenezar = Employee.create(name: "Ebenezar Bukosia", email: "ebenezar@mail.com", password_hash: "show!", username:"ebenezar", gender: "male", title:"CEO",usertype: false,department_id: 4, avatar: "https://picsum.photos/315")
+elvis =  Employee.create(name: "Elvis Kimani", email: "elvis@mail.com", password_hash: "Show4@", username:"elviskim", gender: "male", title:"Injiniaa",usertype: false,department_id: 2,avatar: "https://picsum.photos/316")
+daizie = Employee.create(name: "Daicy Chep", email: "daicy@mail.com", password_hash: "Show!5", username:"daizie", gender: "female", title:"developer",usertype: false, department_id: 4, avatar: "https://picsum.photos/317")
+employee1 = Employee.create(name: "nancy", email: "employee1@gmail.com", password_hash: "Show!1", username:"employee2", gender: "female", title:"developer",usertype: false, department_id: 1,avatar: "https://picsum.photos/318")
+employee2 = Employee.create(name: "pascal o", email: "employee2@gmail.com", password_hash: "Show!2", username:"employee", gender: "male", title:"Human Resource",usertype: false, department_id: 2,avatar: "https://picsum.photos/319")
 
 
 puts "Creating Admin..."
-admin = Admin.create(name: "Admin Admin", email: "admin@admin.com", password: "admin", username:"admin", gender: "male", title:"Admin",usertype: true, department_id: 1)
+admin = Admin.create(name: "Admin Admin", email: "admin@admin.com", password_hash: "admin", username:"admin", gender: "male", title:"Admin",usertype: true, department_id: 1)
 
 
 puts "creating department managers..."
