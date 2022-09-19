@@ -62,16 +62,16 @@ class ApplicationController < Sinatra::Base
 
   #change user password
   patch '/employee/updatepassword/:email' do
-    @user = Employee.find_by(params[:email])
-    if @user.nil?
+    user = Employee.find_by(params[:email])
+    if user.nil?
       responce ={
         responce:"user doesnt exist" 
       }
       responce.to_json
     else 
-       @user.password = params[:password]
-      @user.update(password_hash: @user.password)
-     @user.to_json
+       user.password = params[:password]
+      user.update(password_hash: user.password)
+     user.to_json
     end  
   
 end
