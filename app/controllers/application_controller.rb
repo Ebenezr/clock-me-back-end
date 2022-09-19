@@ -70,7 +70,7 @@ class ApplicationController < Sinatra::Base
       responce.to_json
     else 
        @user.password = params[:password]
-      @user.update(password: @user.password)
+      @user.update(password_hash: @user.password)
      @user.to_json
     end  
   
