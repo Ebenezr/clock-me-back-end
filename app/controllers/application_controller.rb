@@ -26,12 +26,7 @@ class ApplicationController < Sinatra::Base
       hash = params.reject { |k, v| v.blank? }
       @user = Employee.new(hash)
       @user.password = params[:password]
-      @user.save
-    
-      # @user = Employee.new(hash)
-      # @user.password_hash = params[:password]
-      # @user.save
-      # #create a new timestamb instance for new user
+      @user.save 
       Timestamp.create(employee_id: @user.id,monday: 0,tuesday: 0,wednesday: 0,thursday: 0,friday: 0)
       Timerecord.create(employee_id: @user.id, monday: '', tuesday: '', wednesday: '', thursday: '', friday: '')
       return @user.to_json

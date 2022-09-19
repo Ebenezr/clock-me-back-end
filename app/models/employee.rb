@@ -13,18 +13,4 @@ class Employee < ActiveRecord::Base
        @password = Password.create(new_password)
        self.password_hash = @password
    end
-
-#    def create
-   
-#   end
-    # def login
-    #     @user = self.find_by(username: params[:username])
-    #     if @user.password == params[:password]
-    #         @user.to_json
-    #     else 
-    #         responce ={
-    #             responce:"user doesnt exist" 
-    #         }.to_json
-    #     end  
-    # end
 end
