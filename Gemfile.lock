@@ -77,6 +77,8 @@ GEM
     sinatra-activerecord (2.0.25)
       activerecord (>= 4.1)
       sinatra (>= 1.0)
+    sqlite3 (1.5.0-x86_64-darwin)
+    sqlite3 (1.5.0-x86_64-linux)
     thin (1.8.1)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -87,7 +89,6 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  ruby
   x86_64-darwin-19
   x86_64-linux
 
@@ -105,7 +106,9 @@ DEPENDENCIES
   rerun
   rspec (~> 3.10)
   rspec-json_expectations (~> 2.2)
+  sinatra (~> 2.1)
   sinatra-activerecord (~> 2.0)
+  sqlite3 (~> 1.4)
   thin (~> 1.8)
 
 BUNDLED WITH

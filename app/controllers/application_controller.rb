@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
 
   # user login authentification
   post '/login/user' do 
-    @user = Employee.find_by(username: params[:username])
+    @user = Employee.find_by(username: params[:username]) || Admin.find_by(username: params[:username])
     if @user.password == params[:password]
         @user.to_json
     else 
@@ -36,10 +36,6 @@ class ApplicationController < Sinatra::Base
       }
       return responce.to_json
     end  
-
-    # @newemployee.to_json
-    # #(only: [:name, :usertype])
-
   end
 
 
@@ -62,15 +58,15 @@ class ApplicationController < Sinatra::Base
 
   #change user password
   patch '/employee/updatepassword/:email' do
-    user = Employee.find_by(params[:email])
+    user = Employee.find_by(params[:email]) || Admin.find_by(params[:email])
     if user.nil?
       responce ={
         responce:"user doesnt exist" 
       }
       responce.to_json
     else 
-      #  user.password = params[:password]
-      user.update(password_hash: params[:password])
+      user.password = params[:password]
+      user.update(password_hash: user.password)
      user.to_json
     end  
   

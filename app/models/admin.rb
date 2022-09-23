@@ -1,8 +1,8 @@
 require 'bcrypt'
 class Admin < ActiveRecord::Base
-   # include BCrypt
+   include BCrypt
     def password 
-        @password ||= Password.new(password.hash)
+        @password ||= Password.new(password_hash)
     end
 
     def password=(new_password)
